@@ -1,0 +1,151 @@
+inputs and outputs
+	Computers only understand things in binary
+		humans use powers of 10, computers use powers of 2
+		1 = 001
+		2 = 010
+		3 = 011
+		4 = 100
+		5 = 101
+		6 = 110
+		7 = 111
+		8 = ...
+		gonna need a new bit. short for binary digit (a 0 or a 1)
+
+	How do you represent bits inside of a computer
+		Take a lightbulb, it can either be on or off. you could 
+		actually count to 1 with a lightbulb that simply turns
+		on or off
+
+		What if your lightbulb comes with an API. Or an 
+		application programming interface. Now you can program
+		your lightbulb and give it messages.
+
+		If you have 8 bits you will have at most
+		  1  1  1  1 1 1 1 1
+		128 64 32 16 8 4 2 1 which adds up to 255. 
+
+		The number 50 could be represented as 
+		  0  0  1  1 0 0 1 0
+		128 64 32 16 8 4 2 1
+
+	What would the next step be after representing binary numbers
+		Computers can map letters of the alphabet using ASCII
+		These are a series of numbers which are interpreted as 
+		letters
+		H  I
+		72 73
+
+	Algorithms
+		You pass algorithms inputs and they give you outputs. The
+		trick is to make turn the inputs into the outputs efficiently
+
+		Pseudocode
+			Generic way of describing a computer program using plain 
+			english
+
+		Our Pseudocode
+			1. pick up phone book
+			2. open to middle of phone book
+			3. look at names
+			4. if "Smith" is among names
+			5.		call Mike
+			6. else if "Smith" is earlier in book
+			7.		open to middle of left half of book
+			8.		go to line 3
+			9.	else if "Smith" is later in book
+			10.		open to middle of right half of book
+			11.		go to line 3
+			12.	else
+			13.		give up
+
+			created this by considering all possible cases
+				here there are 3
+					mike can be to the right
+					mike can be to the left
+					mike is not in the book
+				its good to think of cases as either
+					general or
+					edge
+
+					for the number of people in a room
+					general would be 5
+					edge would be 0 or a million
+
+	Variables
+		A container that contains some value
+
+	Loop
+		A process in which you repeat something
+
+		Commonly represented using 'for'
+
+	Condition
+		boolean that determines whether or not an action
+		is to be taken
+
+	Statement
+		basically any command that tells the comp what to do
+		ex// say "Hello World"
+
+	Pseudocode for Peanut Butter and Jelly
+		took 19 lines and it was hard to tell rob how to make
+		the sandwhich
+
+Scratch
+	https://www.scratch.mit.edu/
+
+	pieces
+		kickstart with "when (Green flag) clicked"
+
+Binary
+	When you learn numbers you learn 0123456789
+		you can put these in combination to get numbers
+		known as decimal notation cause decem = 10
+	437 = 400 + 30 + 7
+	    = 4 * 100 + 3 * 10 + 7 * 1
+	    = 4 * 10^2 + 3 * 10^1 + 7 * 10^0
+	   	10 is the base
+	If you only have (0 and 1) your base is going to be 2
+		This is Binary cause bi = 2
+
+Ascii
+	You have 26 letters so represent 0-25 as a-z
+	but you need upper and lowercase letters
+		now you need an additional 26 numbers
+	but you also need punctuation, digits 0-9, and a spacebar
+
+	ASCII is 7 bit encoding, there are 2^7 or 128 characters
+	that can be represented using the ASCII coding scheme
+	a-z = 26
+	A-Z = 26
+	0-9 = 10
+	./% = 32
+	_   = 1
+		= 95 total. only 33 characters left
+	The rest of the characters are labeled control characters which
+	used to be used for old messaging machines and
+	0000000 and 1111111 are null and del respectively.
+	Made for tape editing
+
+Problems
+	
+	How do you represent the decimal integer 50 in binary?
+		32 + 16 + 2
+		110010
+
+	How many bits must be flipped in order to capitalize a lowercase
+	'a' that's represented in ASCII?
+	A = 1100001
+	a = 1000001 so only one bit, the 2^5 or 32nds bit has to be 
+				flipped
+
+	How do you represent the decimal integer 50 in hexadecimal?
+		3 * 16 + 2 * 1
+		32
+
+
+	
+
+
+
+
