@@ -1,0 +1,18 @@
+Ideas
+	Make sure that the octopus and crabs cannot spawn on top of the
+	player. This is a bad experience. seems buggy when it happens.
+
+	Work on developing a stronger running away algorithm for the 
+	octopuses. 
+
+	Possibly add another character, for example, starfish falling
+	down the screen or even a shark. 
+
+	Add lives, a scoreboard, create a way of scoring points
+
+	Add different items other than the star, which would
+	either grant the player points or let them tackle
+	monsters in a new way. (Some ideas could be resizing the
+	monsters, so they all shrink by 50%, another powerup could
+	slow the monsters. Maybe create a weapon so the player
+	can defend himself. )
