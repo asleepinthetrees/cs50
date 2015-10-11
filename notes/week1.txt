@@ -1,0 +1,210 @@
+From Scratch to C
+	Statements
+
+	Functions
+
+	Loops
+		Computers are good at doing things over and over again
+
+	Boolean Expression
+
+	Conditions
+		A statement that determines a decision
+
+Story of Paul Allen and Bill Gates
+	They wrote a program that basically allows people to write
+	their own programs. They called it BASIC. It empowers people
+	to write code which is more or less in plain english rather than
+	in machine code. It was one of the first attempts to create
+	an interpreter.
+
+Source Code
+	Unlike pseudo code
+
+	#include <stdio.h>
+
+	int main(void)
+	{
+		printf("Hello World!\n")
+	}
+
+Compiler
+	Learn how to write source code, pass it into a compiler, that 
+	produces object code
+	source code --> compiler --> object code
+	ex. int main(void) 				ex. 00011100
+
+C
+	printf("<Whatever you want to print>");
+
+	int main(void)
+		main
+
+	loops
+		while (true) 
+		{
+			printf("Hello World!\n");
+		}
+
+		for (int i = 0; i < 10; i++)
+		{
+			printf("Hello World!\n")
+		}
+
+	Variables
+		int counter = 0;
+		while (true) {
+			printf("%d\n", counter);
+			counter++;
+		}
+
+	Boolean Expressions
+		(x < y) or ((x < y) && (x < z))
+
+	Conditions
+		if (x < y) {
+			printf("x is less than y\n");
+		}
+		else if (x > y) {
+			printf("x is greater than y\n");
+		} else  {
+			printf("x is equal to y\n");
+		}
+
+	Problem Checks
+		check50 2014.fall.pset1.hello hello.c
+
+	Style Checks
+		style50 <'filename.c'>
+
+	Shorts
+
+		Libraries
+			related prewritten code, use to chare code between
+			people, programs, and processes
+
+			C standard libraries
+				common ones
+					-input/output (stdio)
+					-string (working with strings)
+					-math (constants)
+			Technical terms
+				binary file produced by linking together object 
+				files using a linker. Two types of files
+				header files (*.h) and class files (*.c)
+				contains code decaring
+				the files resources that are available to use.
+				This is known as the interface.
+			Can check out library for stdio.h using
+				$ less /usr/include/stdio.h
+
+	Libraries
+		Whats a library?
+			A group of functions that you can use in your 
+			program. Often used in C to communicate between
+			programs, and programmers, and even threads.
+
+		What role does #include <cs50.h> play when you write it 
+		atop some program?
+			Tells the compiler to go to the default file 
+			usually /usr/include/ and look for the library 
+			header files cs50.h. Once the compiler can see this
+			it can check to see if you are implementing the
+			library correctly or not.
+
+		What role does -lcs50 play when you pass it as a command
+		line argument to clang? (Recall that make, the program
+		we've been using to compile programs in lecture simply 
+		calls clang with some command line arguments to save you
+		time.)
+			-lcs50 tells the clang or clanguage compiler to
+			include the cs50 library.
+
+	Booleans
+		Boolean Values
+			True or False
+		Boolean Operators
+			AND, OR, NOT
+		Boolean Expressions
+			use parentheses for order of operations
+		Syntax
+			AND : &&
+			OR  : ||
+			NOT :  !
+
+	Compilers
+		When you compile something, you are taking it from a 
+		high level programming language to a low level
+		programming language
+
+		Clang
+			4 major steps
+				1. preprocessing
+					preprocessor
+						clang -E only runs preprocessor
+							copy and pastes everything from
+							the header file
+				2. Compilation
+					compiler
+						clang -S only runs the compiler
+							you must pass this a preprocessed
+							file.
+				3. Assembly
+					assembler
+						clang -c only runs the assembler
+							assembler takes in assembly and
+							outputs machine code.
+				4. Linking
+					linker
+						combines a bunch of object files into
+						a single executable file.
+
+		Make Clang
+			make : is a program that automates the compiler for
+			us.
+
+			an executable - in binary format that the computer 
+			can understand. 
+
+			What actually happens to produce an executable
+				make invokes the compiler clang followed by
+				a number of options.
+
+				clang <hello.c> -o hello
+					outputs hello.c as hello. otherwise
+					outputs hello.c as a.out and you have to
+					use the mv a.out hello to rename
+					the file
+
+				clang -Wunused-variable
+					warns if there is an unused variable
+
+					instead of listing all warnings, you use
+					clang -Wall aka Warnings, all
+
+				clang -Werror forces clang to stop compilation
+					if there is a warning.
+
+				clang -ggdb
+					enables special debugging information in
+					the executable. Without this option
+					its hard to examine information.
+
+				clang -l 
+					used to link libraries -lcs50 or -lm
+					for the math library.
+
+					if you write -l before your file name
+					then the library is processed before the
+					source code and cannot be used in it.
+
+
+		
+
+
+
+
+
+
+
+
