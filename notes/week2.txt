@@ -210,5 +210,178 @@ Abstraction
 			printf("The sum of %i and %i is %i!\n", x, y, x+y);
 		}
 
-		
+Shorts
+	
+	Functions
+		An encapsulated procedure
+			Dont have to understand internals, just know
+			how to use or call them
 
+		int main(void)
+			return type is used to communicate status of 
+			program. Anything other than a 0 is an error
+			returning different codes for different
+			errors can be useful for anyone using your
+			program.
+
+	Cryptography
+		A key = 1 A --> B
+		A key = 3 A --> D
+		cat key = 5
+			C --> h
+			a --> f
+			t --> y
+
+	Command Line Arguments
+		ex. mv <arg1> <arg2> where arg1 = Source arg2 = Dest
+
+		how do you tell your C program to utilize CLine args
+			main accepts two parameters argc and argv[]
+
+			argc or argument count has a datatype int
+				contains the number of arguments included
+				in the command
+
+				argv[argc] is an array of char pointers
+
+				argv[0] contains command being run i.e. mv
+				argv[1] contains second command i.e. arg1
+				argv[2] contains third command i.e. arg2
+
+		syntax
+			int main(int argc, char* argv[])
+			{
+				//to access elements in argv use a loop
+				for (int i = 0; i < argc; i++)
+					printf("argv[%d] is: %s\n", i, argv[i])
+				return 0;
+			}
+
+		argv holds an array of char*
+			how do we access individual characters in each
+			argument
+
+				need to apply a nested loop
+
+		int main(int argc, char* argv[])
+		{
+			//to access elements in argv use a loop
+			for (int i = 0; i < argc; i++)
+				for(int j = 0; n = strlen(argv[i]); j < n; j++)
+				printf("argv[%d][%d] is: %c\n", i,j argv[i][j])
+			return 0;
+		}
+
+Problems
+
+	How does a while loop differ from a do while loop?
+	When is the latter particularly useful?
+
+		A while loop does some specified action while a 
+		condition is true. A do while loop does a specified
+		action one time, then checks to see if the condition
+		is true, and continues looping until that condition
+		is false. A do while loop is especially useful
+		when you want to do an action once, and then check
+		to see if some condition based on that action is true.
+		One example is getting proper input from the user.
+
+	What does undeclared identifier usually indicate if
+	outputted by make or really clang?
+
+		Usually this means that you have a variable that has
+		been declared inside of curly braces, but is trying
+		to be accessed outside of the curly braces. On a more
+		general note, it means that the compiler does not 
+		recognize a variable name that you are using in your
+		program.
+
+	Why is Ceasar's cipher not very secure?
+
+		Because there are only 26 possible iterations of the
+		alphabet (including the correct one A, B, C ...) and
+		a computer can easily cycle through thse until it
+		spits out the proper output.
+
+	Whats a function?
+
+		A function is a code block which defines a procedure.
+		Although not always the case, functions are generally
+		given input which they use to derive an output. In all
+		cases functions are a method of encapsulating code,
+		providing increased readability and decreasing the need
+		to retype commonly used blocks of code.
+
+	Why bother writing functions when you can just copy and
+	past code as needed?
+
+		For many reasons. Functions increase the readability of 
+		your code. Functions separate the implementation from
+		the functionality. So the person using the function
+		only need to understand the semantics of using the 
+		function and not necessarily its inner workings. The 
+		benefits of this can be seen even in the most common
+		functions such as printf() which takes several
+		hundred lines of code to implement. Furthermore, 
+		functions reduce the need to copy and paste lines of
+		code. If you used the printf() function 20 times in 
+		some program, it is very useful for the programmer
+		to have those functions which take up <=20 lines.
+		Without functions, they would have thousands of lines
+		of code that look extremely complicated but really only
+		output text to the console.
+
+	ASCII
+		A = 65, a = 97
+		Z = 90, z = 122
+
+		you can loop through letters
+		for (char c = 'A'; c <= 'Z'; c++)
+			printf("%i is %c\n", (int) c, c);
+
+		you can capitalize strings
+		a string is an array of characters, so you can use
+		square bracket notation
+		for (int i = 0, n = strlen(s); i < n; i++)
+		{
+			if (s[i] <= 'a' && s[i] <= 'z')
+			{
+				printf("%c\n", s[i] - ('a' - 'A'));
+			}
+			else
+			{
+				printf("%c", s[i])
+			}
+		}
+
+Command line arguments
+#include <cs50.h>
+#include <stdio.h>
+
+int main(int argc, char* arvg[])
+{
+	// argc is argument count or the number of arguments
+	// argv is argument vector
+	printf("%s\n", argv[1]);
+	// argv[0] has the programs actual name
+}	
+
+to print all the words 
+#include <cs50.h>
+#include <stdio.h>
+
+int main(int argc, char* arvg[])
+{
+	for (int i = 0; i < argc; i++)
+		printf("%s\n", argv[i]);
+}
+
+Walkthrough
+
+	isalpha()
+	isupper()
+	islower()
+	atoi()
+
+	plaintext - 'A' or 'a'
+ 	ceasar letter = (plaintext letter + key) % 26
