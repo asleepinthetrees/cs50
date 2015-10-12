@@ -1,0 +1,214 @@
+Bug
+	
+	print ten stars
+		use a for loop where i = 0; i <= 10; i++
+			this prints 11 stars
+		options
+			i = 0; i < 10; i++
+				or
+			i = 1; i <= 10; i++
+
+	print one star on ten lines
+		for(int i = 0; i <= 10; i++)
+			printf("*");
+			printf("\n");
+
+		options
+			use brackets, because if you have multiple lines
+			you need braces, if you only have one line after
+			the for loop then you can go without braces.
+
+	Extremely critical crypto flaw in iOS and OS X
+		Bug was in SSL (secure sockets later)
+			browsers use this for encryption
+
+			accidentally had one extra line after an if 
+			statement without brackets so conditional
+			logic was not correct.
+
+		key point, low level details can be extremely important
+
+Abstraction
+	
+		How can we go about solving problems, or thinking about
+		solving problems
+
+	Functions
+
+		You can write you own
+
+		// first declare with a prototype
+		void PrintName(string name);
+
+		// you still run your program with the main function
+		int main(void)
+		{
+			printf("Your name ");
+			string s = GetString();
+			PrintName(s);
+		}
+		
+		// Define the function
+		void PrintName(string name)
+		{
+			printf("hello, %s\n", name);
+		}
+
+		prototype syntax
+			<return type> function(<input type> <input name>);
+
+	Scope
+		Variable can only be used inside the most recently opened
+		and closed brackets
+
+	Representation of information
+
+		char 	character 	1 byte		256 possible characters
+
+		int 	integer		4 bytes		4 billion possibilities
+
+		float	real number	4 bytes		finite precision
+
+		double	real number 8 bytes		finite but more precision
+
+		long long	integer	8 bytes		larger than an int
+
+		What is overflow
+			If you overflow a byte thats been filled to
+			255 all numbers will return to zero
+
+		Float precision
+			Imprecise because finite number of values, if there
+			is an infinite number of real numbers, the computer
+			cannot represent all of them, so it just gives you
+			the number closest to what you were looking for.
+
+			Consequences
+				Scientfic rocket blew up
+
+				128 soldiers died because patriot missle defence
+				system failed.	
+
+	Functions 2
+
+		Functions take input, and use their functionality to
+		do something sophisticated with them
+
+	CS50 application
+
+		Ubuntu linux
+
+		GEdit
+			Editor
+			Terminal Window
+				where you type commands, simplified UI
+				not Graphical User Interface, rather a
+				command line interface
+
+				make hello
+					takes input (source code) and converts
+					it to object code
+
+				./hello
+					runs the file hello in the current directory
+
+		#include <stdio.h>
+
+			this line includes functions that were written in 
+			the past
+
+			says go find this file, and copy it and paste it
+			above the contents of my current file
+
+			contains printf()
+
+		main
+			the default entry point to a program
+
+		{}
+			encapsulate functionality
+
+		printf
+			a function
+
+		() from printf()
+			container that holds the inputs
+
+		"hello, world\n"
+			In C you have to surround a string with double 
+			quotes.
+
+		\n
+			new line symbol
+
+		;
+			ends a statement
+
+		Source Code
+			passed to a compiler which outputs
+				object code or a pattern of zeroes and ones
+
+			take for granted that the command make produces
+			the zeroes and ones
+
+		Make actually calls clang
+
+		clang hello.c
+			will output a.out because this is generic name
+			for the output of clang compiler
+
+			when you compile hello.c you are only turning it
+			into zeroes and ones
+
+				cs50 staff compiled cs50's library into zeroes
+				and ones. you need to specify that you want
+				to combine the object files in your other
+				program using -l<object file>
+
+		clang -o <argument> <file to by compiled>
+			names the output as <argument>
+
+		printf 
+			has several escape characters
+				\n
+				\r
+				\'
+				\"	useful because " usually denotes a string
+				\\
+				\0
+				...
+
+			has placeholders
+				%c 		single character
+				%d, %i 	integer
+				%f 		floating point
+			
+		cs50 library
+			has two types not actually in string
+				bool
+				string
+			has functions
+				GetChar
+				GetDouble
+				GetFloat
+				GetInt
+				GetLongLong
+				GetString
+
+	Adder.c
+		Simple calculator that adds numbers
+		#include <stdio.h>
+		#include <cs50.h>
+
+		int main(void)
+		{
+			printf("Give me an integer: ");
+			int x = GetInt();
+			printf("Give me antoehr integer: ");
+			int y = GetInt();
+
+			printf("The sum of %i and %i is %i!\n", x, y, x+y);
+		}
+
+		
+
