@@ -376,7 +376,7 @@ int main(int argc, char* arvg[])
 		printf("%s\n", argv[i]);
 }
 
-Walkthrough
+Walkthrough caesar.c
 
 	isalpha()
 	isupper()
@@ -385,3 +385,23 @@ Walkthrough
 
 	plaintext - 'A' or 'a'
  	ceasar letter = (plaintext letter + key) % 26
+
+Walkthrough viginere.c
+
+	caesar cipher weakness
+		frequency analysis
+			letter h occurs a lot, and e occurs a lot
+		brute force attack
+
+	viginere cipher
+		relatively easy to break if you know the length
+		of the key
+
+		finding the length of the key isn't too hard,
+		if words occur multiple times you'll see
+		repetition.
+
+		brute force is possible but (26^n) - 1 possibilites
+		where n is the length of the cipher
+
+	
