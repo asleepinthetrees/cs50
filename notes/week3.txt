@@ -1,0 +1,521 @@
+Command line arguments
+	why we haven't been able to use them
+		int main(void) cannot take command line arguments
+
+	How to use command line arguments
+		int main(int argc, string argv[])
+		{
+
+		}
+
+		now main takes two arguments, an int, and an array
+			when you specify the name of something argv[]
+			with no number in the brackets, you just are
+			saying its an array, but you don't know the
+			size
+
+		int argc
+			stands for argument count
+
+			one chunk of memory
+
+		string argv[]
+			stands for argument vector
+
+			arbitrarily sized chunk of memory that holds
+			strings
+
+		Example $ ./hello
+			argc = 1
+			argv[0] = ./hello
+
+		Example $ cd Dropbox
+			argc = 2
+			argv[0] = cd
+			argv[1] = Dropbox
+
+		argc tells you when to stop looking in memory
+
+
+	Segmentation Fault
+		When you touch a chunk of memory that you shouldnt have
+
+		Computer only gives you memory chunks for argc if you
+		go beyond that you risk touching something else
+
+	int in int main(void)
+		main automatically returns a 0, you can use this 
+		to check for errors, if an error occurs,
+		then return something other than zero
+
+	Sorting
+	
+		Bubble Sort
+
+		Insertion Sort        
+
+		Selection Sort
+
+	What do we do naturally
+
+		There are a bunch of ways we could do this
+			sort piles separately then merge them together
+
+	Bubble Sort
+		First pass of 8 people takes n - 1 comparisons because
+		you cant compare a person with themself
+
+		Now the 8th person is the largest person, so now
+		you only have to do n - 2 comparisons
+
+		(n - 1) + (n - 2) + ... + 1
+
+		adds up to (n (n-1) ) / 2
+
+		or (n^2 - n) / 2	clearly exponential growth
+
+		sorting a million people might take 499 billion steps
+		as n gets larger and larger this algorithm takes longer
+		and longer
+
+		(n^2 / 2) - (n / 2) is interesting because
+		n^2 really dominates the final number. Computer scientists
+		only really care about the biggest term in the formula
+
+		So computerscientists say bubble sort is On the Order of
+		n^2 or O(n^2)
+
+		Upper Bound
+			of bubble sort is O(n^2)
+
+			is there an algorithm that takes no more than O(n)
+			steps?
+				finding the largest number in a list
+
+			is there an algorith that takes no more than O(log(n))
+				the phone book example, when you divide by 2 each
+				time. These algorithms all assume list is sorted
+
+			What is O(1)
+				Constant time algorith, always takes the same number
+				of steps.
+					Finding the first element in a list for example
+
+		Lower Bound (omega symbol @(n))
+			What sort takes @(n) steps
+				bubble sort, in fact any sort has to take at least
+				n steps, because you must see every element
+				in order to know that they are sorted
+
+			What sort takes @(1) steps
+				phone book algorithm
+				ex. you open it and find the person immediately
+
+		Theta(n)
+			when O(n) and @(n) are the same
+			Big O and Omega are the same
+
+	Big O notation
+		Asymptotic notation used by computer scientists to denote
+		the performance or running time of an algorithm
+
+		We do not count time, or memory of an algorithm, just number
+		of operations
+
+	Selection Sort
+		Go and find the smallest person in the list, then swap them
+		with the person at their correct index
+
+		First time takes (n-1) steps
+		Second time takes (n-2) steps
+
+		Like bubble sort, selection sort takes O(n^2)
+		Minimally selection sort must take @(n^2) there is no
+		abort step
+
+	Insertion Sort
+		Go and find each person, then shift the list so that
+		person can get in the front
+
+		O(n^2) and @(n^2) because there is no abort step
+
+	As humans we take algorithms for granted
+		However we do have intuition with how to solve problems
+		like these. The trick is to formalize patterns.
+
+		For instance solving a randomly created deck of cards
+			Sort by suit, then by number
+
+	Merge Concept
+		You divide a problem into pieces, solve identical problems
+		in isolation of eachother, then merge the results
+
+		Iterative Approach
+			Do the same step over again
+
+	Merge Sort
+
+		Pseudo Code
+
+			On input of n elements
+				if n < 2:		(list must be sorted, 1 or 0 elements)
+					return
+				else
+					sort left half of elements
+					sort right half of elements
+					merge sorted halves
+
+		Unwrapping Pseudo Code
+			With 8 elements
+				sort left half of elements
+					call the algorithm on 4 elements
+						Sort left half of elements
+							call algorithm with 2 elements
+								sort left half of elements
+									call algorithm with 1 element
+										'L' is now now sorted
+								sort right half of elements
+									call algirthm with 1 element
+										'R' is now sorted
+								Merge Sorted Elements
+									Move L and R to correct locations
+						Sort Right half of 4 elements
+							Call algorithm with 2 elements
+								...
+				Sort right half of elements
+					Call the algorithm on four elements
+						....
+				Merge left half of elements, and right half of elements
+					loop through each half of elements choosing them
+					smaller of two.
+
+		The list is divided log(n) times and the merging takes n steps
+		so merge sort takes O(n log(n) )
+
+	Linear Search
+		ex. look for number 0 in list 2 4 0 5 3 7
+			look through every number in the list and check for equality
+
+		pseudocode
+			linearSearch(key, array[]):
+
+				for(i = 0; i < length(array); i++);
+					if(array[i] == key):
+						return i
+
+				return -1
+
+		Greatest Strength
+			Doesn't matter what you're looking for linear search
+			will find it
+
+		Greatest Weakness
+			You have to search the entire list in the worst case
+			scenario
+
+	Binary Search
+		ex. find a name in an alphabetical list
+
+			you would intuitively only want to look in the half of the
+			list which contains what you are looking for
+
+		Finds an item in a list of n items in about Log(n) steps
+		beacuse it halves the number every time
+
+		pseudocode
+				(at the start min and max are 0 and len(array))
+			binarySearch(key, array[], min, max)
+				midpoint = findMidPoint(min, max)
+
+				if (max < min):
+					return -1
+
+				if (array[midpoint] < key):
+					binarySearch(key, array, midpoint + 1, max)
+				else if (array[midpoint] > key):
+					binarySearch(key, array, min, midpoint -1)
+				else:
+					return midpoint
+
+		Condtions
+			The array has to be sorted, two options are to sort before
+			searching, or to create a list structure where the list
+			is always sorted even when adding or removing elements
+
+		Binary Search Tree
+			Three Properties
+				The left subtree of a node only contains values
+				that are less than or equal to the node's value
+
+				The right subtree of a node only contains values
+				that are greatere than or equal to the node's value
+
+				both the right subtree and left subtree of a node
+				are binary search trees
+
+			Easy to find the min and max values
+				min - go left at every node til you have no nodes left
+				max - go right at every node til you have no nodes left
+				any number - go left if smaller than current node
+					or right if larger than current node
+
+			print out all numbers
+				for any node
+					print out everything in the left subtree
+					Then print out the node
+					Then print out everything in the right subtree
+
+			Adding something to the tree
+				For any node 
+					if item is less than node
+						go to the left
+					if item is greater than the node
+						go to the right
+					if there are no more node
+						insert item
+
+			Deleting something from the tree
+				Three different scenarios
+
+				Node is a leaf node
+					delete it, and go on with your day
+
+				Node has only one child
+					take the child element of that node
+					attach it to the parent of that node
+
+				Node has two children
+					first find node with next largest value
+					swap the two
+					delete the node in question
+
+			How to build binary search trees
+				If you build from sorted list of numbers
+				all numbers are added to the right every time
+				this is no better than a list at all
+
+				One thing you can do is randomly shuffle the
+				input values
+
+	Bubble Sort
+
+		PseudoCode
+			for each element in the list
+				look at the element and the element to its right
+					if out of order
+						swap elements
+
+		Called Bubble sort because the largest elements bubble
+		up to the rightmost places in the list
+			After n iterations the right most n elments of the
+			array will be sorted
+
+	Selection Sort
+
+		Divide a list into two portions, a sorted portion
+		and an unsorted portion, at each step a number is moved
+		from the unsorted portion to the sorted portion
+
+		find the smallest element in the list
+			swap it with the first unsorted item in the list
+		reiterate with n-1 elements
+
+		for i = 1 to n - 1:
+			min = i
+			for j = i + 1 to n
+				if array[j] < array[min]
+					min = j
+			if min != i
+				swap array[min] and array[index]
+
+		How long does it take?
+			Worst Case Big O
+				The total number of comparisons is the sum
+				of 1 to the length of the list - 1
+
+				( n ( n - 1 ) ) / 2
+
+				O(n^2)
+
+			Best Case Scenario
+				Selection sort would still require the same
+				number of steps for an already sorted list
+
+				@(n^2)
+
+	Insertion Sort
+
+		for i = 1 to n - 1
+			element = array[i]
+			j = i
+			while ( j > 0 and array[j - 1] > element)
+				array[j] = array[j-1]
+				j = j - 1
+			array[j] = element
+
+		Worst Case Big O
+			O(n^2)
+
+		Best Case Omega 
+			O(n)
+
+	Merge Sort
+
+		O( n log n)
+
+
+	GDB
+		GNU Project Debugger
+
+		allows you to poke around inside the program while
+		it is executing
+
+		to start up
+			gdb
+
+		to quit
+			quit or q
+
+		operates on executable files, we can't run it on
+		.c or .h sourcecode files, onyl on ./programName
+
+		To run gdb on programName
+			gdb ./programName
+
+				now you can type in command line arguments
+
+				to just run the program 
+
+					run or r
+
+			break points are used to create pauses, where 
+			gdb shows you what is about to happen
+
+			to break on main, start gdb on a program
+
+				break main
+
+					gdb outputs the line which is about
+					to be run to run the line type
+
+						next or n
+
+			Note the operating system delays outputing anything
+			onto the screen until it absolutely has to, so
+			debugging with printf's can seem unreliable
+
+			The solo curly brace '}' indicates that you are
+			about to come to the end of a loop
+
+			If you are confused then used list or 'l' to print
+			out the source code
+
+				list or l with print out the source code
+				centered around the line you are currently on
+
+				typing list or l again will output the next set of
+				lines
+
+				to get back to where you are supply list with a 
+				line number for instance line 12 or l 12
+
+			You can use gdb's print feature to output a variable
+
+				print variable
+
+			When you hit enter without typing anything gdb will
+			just repeat the previous command
+
+			at any point you can restart the program using run
+			or r
+
+			you can set breakpoints to specific line numbers using
+
+				b <filename.c>:linenumber
+				for example 
+					b factorial.c:14
+
+			To move ahread to another breakpoint use the 
+				continue or c command
+
+			you can set variables in gdb using
+				print <variablename> = constant
+
+			you can print all local variables using
+				info locals
+
+			you can disable breakpoints using
+				disable
+
+			you can recompile using 
+				make <filename
+
+			run r
+			list l [line number]
+			print <variable>	[<variable = 3>]
+			break b [<filename.c>:line#] [main]
+			continue c
+			info locals
+
+
+	Questions
+		Why does binary search require that an array be sorted?
+			Because binary search uses a comparison to decide which
+			half of an array it will search for next. If the array
+			is not sorted, then the fact that an item is greater
+			than or less than the desired element gives no information
+			about where to look for the desired element next.
+
+		Why is bubble sort O(n^2)?
+			Because in the worst case scenario bubble sort must perform
+			n iterations, within each of which bubble sort performs
+			n - 1, n-2, ... 1 comparisons. This is equivalent to the
+			sum of 1 to n-1 which can be written as (n (n - 1) ) / 2.
+			The dominant number in this formula will be n^2 so we can
+			simplify and say that the Big O notation for bubble sort
+			is O(n^2)
+
+		Why is insertino sort in Omega(n)?
+			Because in the best possible scenario, the list is already
+			sorted. So for each element in the list, the insertion
+			sort only has to do one comparison to the element which
+			comes before. Eventually it will have performed n 
+			comparisons and have arrived at the end of the list. Thus
+			insertion sort in the best possible case, takes Omega(n)
+			comparisons
+
+		In no more than 3 sentences how does selection sort work?
+			Starting with index 0, pass through the entire list and
+			swap element at index 0 with the smallest element in the
+			list. Repeat with index incremented by 1 up until index
+			is equal to n - 1. Once this final swap is complete
+			all items from index 0 to index n will be in the correct
+			place and thus the list is sorted.
+
+		Whats an upper bound on the worst case running time of merge
+		sort?
+			The upper bound of the worst case running time of merge
+			sort is represented by big O notation, which we know to
+			be (n log(n)). This is true because merge sort first 
+			divides the list in half, which implies a log n function
+			then performs n comparisons on each half. 
+
+		GDB lets you debug a program but more specifically what
+		does it let you do?
+			GDB lets you execute each line/command in the program
+			one at a time, examining the values of the variables
+			between each step. This lets you see exactly where
+			variables are acquiring undesirable values. However
+			this is only one of the many things GDB lets you do. 
+			GDB also lets you comile programs, run programs, set
+			break points which can be thought of as acting like
+			a check point in a video game for your line by line
+			execution progress. 
+
+
+
+
+
+	
+
+
